@@ -1,0 +1,108 @@
+import React, {useState, useEffect} from 'react';
+import { format } from 'date-fns';
+import './Layout.css';
+
+const Alerts = () => {
+    let found = 0;
+
+    const apiurl = process.env.REACT_APP_SERVER_API_URL;
+
+    const [alerts, setAlerts] = useState([]);
+    const [alertState, setAlertState] = useState([]);
+    useEffect(() => {
+        async function getData() {
+            try {
+            let response = await fetch(apiurl+"/sewage");
+            let data = await response.json();
+            let res = response.status
+            console.log(data)
+            setAlerts(data);
+            setAlertState(res)
+            } catch {
+            
+            }
+        };
+
+        getData();
+    }, [alertState]);
+
+    try {
+        if (! alerts.Alerts.length > 0) {
+            console.log("Data not found, alert state: "+alertState)
+            if (alertState == 200) {
+                found = 2;
+            }
+        } else {
+            // console.log("Data found")
+            console.log(alerts)
+            found = 1;
+        }
+    } catch {
+        console.log("No alerts")
+    }
+
+    if ( found === 2 ) {
+        return (
+            <>
+            <div className='div-table white'>
+                <div className='div-table-row white'>
+                    <div className='div-table-col-max white'>
+                        <div className='Alert'>&#128169; &ensp; Alerts &ensp; &#128169;</div>
+                    </div>
+                </div>
+            </div>
+            <div className='div-table'>
+                <div className='div-table-row'>
+                    <div className='div-table-col-max white'>
+                        <h4>No Alerts</h4>
+                    </div>
+                </div>
+            </div>
+            </>
+        )
+    }
+    if ( found === 1 ) {
+        return (
+            <>
+                <div className='div-table white'>
+                    <div className='div-table-row white'>
+                        <div className='div-table-col-max white'>
+                            <div className='Alert'>&#128169; &ensp; Alerts &ensp; &#128169;</div>
+                        </div>
+                    </div>
+                </div>
+                <div className='div-table'>
+                    {alerts.Alerts.map((data) => ( 
+                    <div className='div-table-row'>
+                        <div className='div-table-col-left'>
+                            Location<br/>
+                            Started<br/>
+                            Stopped<br/>
+                            Activity<br/>
+                            Impact<br/>
+                            Outlet
+                            <hr/>
+                        </div>
+                        <div className='div-table-col-right'>
+                            {data.bathingSite}<br/>
+                            {format(data.eventStart, 'dd/MM/yyyy hh:mm')}<br/>
+                            {format(data.eventStop, 'dd/MM/yyyy hh:mm')}<br/>
+                            {data.activity}<br/>
+                            {data.impact}<br/>
+                            <span className="outlet">{data.outlet}</span>
+                            <hr/>
+                        </div>
+                    </div>
+                    ))}
+                </div>
+            </>
+        );
+    }
+    if ( found === 0 ) {
+        return (
+            <h3>Waiting for alert data</h3>
+        )
+      }
+};
+
+export default Alerts;

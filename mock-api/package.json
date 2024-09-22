@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "connect-api-mocker": "^1.11.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

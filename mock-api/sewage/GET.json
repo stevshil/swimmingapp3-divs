@@ -1,0 +1,31 @@
+{
+    "Alerts": [
+      {
+        "activity": "Genuine",
+        "bathingSite": "FOLKESTONE",
+        "duration-mins": 447,
+        "eventStart": "2024-08-24T09:02:00",
+        "eventStop": "2024-08-24T16:29:00",
+        "impact": "No",
+        "outlet": "THE STADE FOLKESTONE"
+      },
+      {
+        "activity": "Not Genuine",
+        "bathingSite": "SANDGATE",
+        "duration-mins": 3246,
+        "eventStart": "2024-08-24T08:53:12",
+        "eventStop": "2024-08-26T15:00:01.533",
+        "impact": "No",
+        "outlet": "RANGE ROAD HYTHE K LONG"
+      },
+      {
+        "activity": "Genuine",
+        "bathingSite": "SANDGATE",
+        "duration-mins": 877,
+        "eventStart": "2024-08-24T08:53:00",
+        "eventStop": "2024-08-24T23:30:00",
+        "impact": "No",
+        "outlet": "RANGE ROAD HYTHE K LONG"
+      }
+    ]
+  }

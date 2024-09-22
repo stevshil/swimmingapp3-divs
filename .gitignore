@@ -1,0 +1,8 @@
+**/.py*_cache
+**/api_env
+**/backupData
+**/Certs
+**/data/*
+**/__pycache__
+**/keys
+**/node_modules
