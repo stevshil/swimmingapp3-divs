@@ -54,7 +54,7 @@ const Weather = ({theHour,theDay}) => {
         <div className='div-table white'>
             <div className='div-table-row'>
                 <div className='div-table-col-max white'>
-                Last Update: {weather.current.last_updated} UTC<br/>
+                Last Update: {weather.current.last_updated}<br/>
                 </div>
             </div>
         </div>
@@ -121,7 +121,7 @@ const Weather = ({theHour,theDay}) => {
         <div className='div-table white'>
             <div className='div-table-row'>
                 <div className='div-table-col-max white'>
-                Date &amp; Time: {weather.forecast.forecastday[theDay].hour[theHour].time}<br/>
+                Forcast Time: {weather.forecast.forecastday[theDay].hour[theHour].time}<br/>
                 </div>
             </div>
         </div>
