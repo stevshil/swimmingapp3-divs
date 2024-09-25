@@ -1,0 +1,21 @@
+server {
+    listen 443 ssl;
+    ssl_certificate /app/Certs/fullchain.pem;
+    ssl_certificate_key /app/Certs/privkey.pem;
+
+    server_name www.therapypages.com;
+
+    location / {
+        proxy_pass http://localhost:5001;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+server {
+    listen 80;
+    server_name www.therapypages.com;
+    location / {
+        proxy_pass http://localhost:5001;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}

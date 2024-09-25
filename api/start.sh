@@ -6,5 +6,7 @@ then
 else
     cp /etc/nginx/http.d/default.conf.http /etc/nginx/http.d/default.conf
 fi
+(
 nginx
-python apiserver.py
+python apiserver.py 
+)>/dev/stdout 2>/dev/stderr

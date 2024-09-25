@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys
+import sys, os
 from flask import Flask
 import json
 from flask_cors import CORS
@@ -108,36 +108,44 @@ def catchall(path):
 
 
 if __name__ == "__main__":
-    runssl=False
+    #runssl=False
+    runssl=keyEtc["configinfo"]["SSL"]
+    testState=keyEtc["testState"]
+    print("runssl: "+runssl)
+    print("testState: "+testState)
 
     # Check if SSL directory exists
-    try:
-        if os.path('Certs/fullchain.pem'):
-            runssl=True
-            try:
-                context = ('Certs/fullchain.pem', 'Certs/privkey.pem')
-            except:
-                context = None
-        else:
-            context = None
-    except:
-        context = None
+    # try:
+    #     print("Checking pems")
+    #     if os.path.exists('Certs/fullchain.pem') and runssl == True:
+    #         print("SSL is true")
+    #         runssl=True
+    #         try:
+    #             context = ('Certs/fullchain.pem', 'Certs/privkey.pem')
+    #         except Exception:
+    #             context = None
+    #     else:
+    #         context = None
+    # except Exception:
+    #     context = None
     
     try:
         run_args=sys.argv
-    except:
+    except Exception:
         run_args=[""]
         pass
     
     print("After SSL check: runssl: "+str(runssl))
 
     try:
-        if sys.argv[1].upper() == "DEBUG":
-            print("DEBUG")
-            testState=keyEtc["testState"]
+        if testState.upper() == "DEBUG":
             print("Test State: "+testState)
             print("PORT: 5001")
-            app.run(host='0.0.0.0',port=5001,debug=True)
+            if runssl == True:
+                print("WITH SSL")
+                app.run(host='0.0.0.0',port=5001,debug=True,ssl_context=context)
+            else:
+                app.run(host='0.0.0.0',port=5001,debug=True)
         elif runssl == False:
             print("BASIC")
             print("PORT: 5001")

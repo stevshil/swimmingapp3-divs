@@ -28,23 +28,19 @@ def loadConfig():
     areaids=[]
     areaids=[x.strip() for x in areas.readlines()]
     areas.close()
-    try:
-        tsFile=open("keys/state","r")
-        testState=tsFile.readline().strip()
-        tsFile.close()
-    except:
-        # If no state file then production
-        testState="prod"
     
     # System configuration
     load_dotenv()
+    testState=os.getenv("MODE")
     configinfo={
         "HOURLY": os.getenv("HOURLY"),
         "DAILY": os.getenv("DAILY"),
         "TIDES": os.getenv("TIDES"),
         "SEWAGE": os.getenv("SEWAGE"),
         "WEATHER": os.getenv("WEATHER"),
-        "SEATEMP": os.getenv("SEATEMP")
+        "SEATEMP": os.getenv("SEATEMP"),
+        "DEBUG": os.getenv("DEBUG"),
+        "SSL": os.getenv("SSL")
     }
 
     mainInfo={"sgapikey": sgapikey, "sgapikey2": sgapikey2, "latitude": latitude, "longitude": longitude, "location": location, "locationid": locationid, "gapi": gapi, "govapi": govapi, "areaid": areaid, "wapikey": wapikey, "testState": testState, "areaids": areaids, "configinfo": configinfo}

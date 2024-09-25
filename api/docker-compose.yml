@@ -1,13 +1,12 @@
-version: "3.8"
-
 services:
   weatherservice:
     build:
       context: .
-    image: steve353/weatherapi2:1.0
+    image: steve353/weatherapi:v2-1.0
     ports:
       - 5001:443
     volumes:
-      - ./Data:/app/data
-      - ./Keys:/app/keys
+      - ./data:/app/data
+      - ./keys:/app/keys
       - ./Certs:/app/Certs
+      - ./.env:/app/.env:ro

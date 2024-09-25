@@ -87,14 +87,19 @@ def writeFileData(file_name,data):
         nofile=1
 
     try:
+        print("DEBUG FILENAME: "+str(file_name))
         fh=open(file_name,"w")
         fh.write(str(data))
         fh.close()
         if newfile == 1:
             os.remove(file_name+".old")
+        fh.close()
         return "UPDATED"
     except Exception as e:
-        fh.close()
+        try:
+            fh.close()
+        except:
+            pass
         os.remove(file_name)
         if newfile == 1:
             os.remove(file_name+".old")

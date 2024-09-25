@@ -1,7 +1,8 @@
 {
-  "name": "fe",
-  "version": "0.1.0",
+  "name": "TPS Services Ltd Swimming",
+  "version": "2.0.0",
   "private": true,
+  "homepage": "/swim",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
