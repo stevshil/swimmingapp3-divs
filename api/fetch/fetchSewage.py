@@ -54,8 +54,8 @@ def govAlerts():
                     info={'bathingSite': alert['bathingSite'], 'eventStart': 'ERR', 'eventStop': 'ERR', 'activity': str(e), 'duration-mins': 0, 'impact': "NA", 'outlet': 'NA'}
 
         else:
-            if len(newdata) == 0:
-                newdata={}
+            info={'bathingSite': alert['bathingSite'], 'eventStart': 'ERR', 'eventStop': 'ERR', 'activity': str(e), 'duration-mins': 0, 'impact': "NA", 'outlet': 'NA'}
+            newdata.append(info)
         
     #print(newdata)
     return newdata
