@@ -68,6 +68,7 @@ const Alerts = () => {
                     <div className='div-table-row white'>
                         <div className='div-table-col-max white'>
                             <div className='Alert'>&#128169; &ensp; Alerts &ensp; &#128169;</div>
+                            <div>Last updated: {alerts.updated}</div>
                         </div>
                     </div>
                 </div>

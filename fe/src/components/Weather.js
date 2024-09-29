@@ -54,7 +54,7 @@ const Weather = ({theHour,theDay}) => {
         <div className='div-table white'>
             <div className='div-table-row'>
                 <div className='div-table-col-max white'>
-                Last Update: {weather.current.last_updated}<br/>
+                Weather Update: {weather.current.last_updated}<br/>
                 </div>
             </div>
         </div>

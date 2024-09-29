@@ -77,8 +77,9 @@ def tideHour(tidedate):
 
 @app.route("/sewage", methods=["GET"])
 def sewage():
-    result=fetch.performUpdate(keyEtc["testState"],keyEtc["configinfo"]["SEWAGE"],1,"sewage")
-    print("DEBUG: "+result)
+    # result=fetch.performUpdate(keyEtc["testState"],keyEtc["configinfo"]["SEWAGE"],1,"sewage")
+    # print("DEBUG: "+result)
+    # Background task now gets the data, see backgroun/sewage.py
     try:
         data=loadFileData("SEWAGE")
         return data, 200

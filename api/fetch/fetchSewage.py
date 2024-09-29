@@ -84,7 +84,8 @@ def getAllAlerts():
     alerts=govAlerts()
     # live=govLive(keyEtc["locationid"])
     # return {"Alerts":alerts,"LiveAlert":live}
-    return json.dumps({"Alerts": alerts})
+    # return json.dumps({"Alerts": alerts})
+    return json.dumps({"Alerts": alerts, "updated": datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M")})
 
 if __name__ == '__main__':
     # print(govAlerts(keyEtc["locationid"]))
