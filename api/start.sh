@@ -8,6 +8,6 @@ else
 fi
 (
 nginx
-python background/sewage.py &
+python background/sewage.py >/app/logs/sewage.log 2>&1 &
 python apiserver.py 
 )>/dev/stdout 2>/dev/stderr

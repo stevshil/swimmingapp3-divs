@@ -7,3 +7,4 @@
 **/keys
 **/node_modules
 **/docker-compose-server.yml
+api/logs

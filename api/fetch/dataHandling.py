@@ -21,7 +21,7 @@ def performUpdate(useenv,file_name,freq,api,*params):
     """
 
     # Check file state first
-    if checkFileState(file_name,freq) == "OK":
+    if checkFileState(file_name,freq) == "OK" and api != "sewage":
         return "OK"
 
     # Determine which service to call

@@ -40,7 +40,8 @@ def loadConfig():
         "WEATHER": os.getenv("WEATHER"),
         "SEATEMP": os.getenv("SEATEMP"),
         "DEBUG": os.getenv("DEBUG"),
-        "SSL": os.getenv("SSL")
+        "SSL": os.getenv("SSL"),
+        "SEWAGEINT": os.getenv("SEWAGEINT")
     }
 
     mainInfo={"sgapikey": sgapikey, "sgapikey2": sgapikey2, "latitude": latitude, "longitude": longitude, "location": location, "locationid": locationid, "gapi": gapi, "govapi": govapi, "areaid": areaid, "wapikey": wapikey, "testState": testState, "areaids": areaids, "configinfo": configinfo}

@@ -12,15 +12,27 @@ import sched, time
 
 keyEtc=fetch.loadConfig()
 
-def getSewage(scheduler):
-    thirty_minutes=60*30
-    fifteen_minutes=60*15
-    scheduler.enter(fifteen_minutes,1,getSewage, (scheduler,))
-    result=fetch.performUpdate(keyEtc["testState"],keyEtc["configinfo"]["SEWAGE"],1,"sewage")
-    print("DEBUG: "+result)
-    print("Last run: "+datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M"))
+# open log file
+# logfh = open("logs/sewage.log","w")
 
-print("Starting Sewage Data Gatherer at "+datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M"))
+def getSewage(scheduler):
+    sewint=int(keyEtc["configinfo"]["SEWAGEINT"])*60
+    print("INTERVAL TIME: "+str(sewint))
+    scheduler.enter(sewint,1,getSewage, (scheduler,))
+    try:
+        result=fetch.performUpdate(keyEtc["testState"],keyEtc["configinfo"]["SEWAGE"],1,"sewage")
+    except Exception as e:
+        outerr="ERROR: "+str(e)
+        # logfh.write(outerr)
+        print(outerr, flush=True)
+    print("DEBUG: "+result, flush=True)
+    output="Last run: "+datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+    # logfh.write(output+"\n")
+    print(output, flush=True)
+
+output = "Starting Sewage Data Gatherer at "+datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+# logfh.write(output+"\n")
+print(output, flush=True)
 sewage_sched = sched.scheduler(time.time, time.sleep)
 sewage_sched.enter(1,1,getSewage, (sewage_sched,))
 sewage_sched.run()

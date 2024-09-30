@@ -1,7 +1,7 @@
 FROM python:3.10-alpine3.16
 # Install the app
 COPY requirements.txt /tmp
-RUN mkdir -p /app/data /app/keys /app/fetch /app/present /app/background
+RUN mkdir -p /app/data /app/keys /app/fetch /app/present /app/background /app/logs
 RUN pip install -r /tmp/requirements.txt
 COPY *.py /app
 COPY fetch/*.py /app/fetch/
