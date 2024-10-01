@@ -26,6 +26,9 @@ const Alerts = () => {
         getData();
     }, [alertState]);
 
+    let clientTZ="";
+    let alertsTime="";
+
     try {
         if (! alerts.Alerts.length > 0) {
             console.log("Data not found, alert state: "+alertState)
@@ -36,6 +39,12 @@ const Alerts = () => {
             // console.log("Data found")
             console.log(alerts)
             found = 1;
+            // clientTZ = (new Date()).getTimezoneOffset();
+            clientTZ = Number(((new Date()).toString()).split("+")[1].split("")[1]);
+            alertsTime = new Date(alerts.updated)
+            alertsTime.setHours(alertsTime.getHours()+clientTZ)
+            // console.log("TZ: "+clientTZ)
+            // console.log("Alerts Time: "+alertsTime)
         }
     } catch {
         console.log("No alerts")
@@ -68,7 +77,7 @@ const Alerts = () => {
                     <div className='div-table-row white'>
                         <div className='div-table-col-max white'>
                             <div className='Alert'>&#128169; &ensp; Alerts &ensp; &#128169;</div>
-                            <div>Last updated: {alerts.updated}</div>
+                            <div>Last updated: {format(alertsTime,'dd/MM/yyyy HH:mm')}</div>
                         </div>
                     </div>
                 </div>
@@ -86,8 +95,8 @@ const Alerts = () => {
                         </div>
                         <div className='div-table-col-right'>
                             {data.bathingSite}<br/>
-                            {format(data.eventStart, 'dd/MM/yyyy hh:mm')}<br/>
-                            {format(data.eventStop, 'dd/MM/yyyy hh:mm')}<br/>
+                            {format(data.eventStart, 'dd/MM/yyyy HH:mm')}<br/>
+                            {format(data.eventStop, 'dd/MM/yyyy HH:mm')}<br/>
                             {data.activity}<br/>
                             {data.impact}<br/>
                             <span className="outlet">{data.outlet}</span>
