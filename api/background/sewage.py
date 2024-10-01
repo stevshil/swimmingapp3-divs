@@ -21,11 +21,11 @@ def getSewage(scheduler):
     scheduler.enter(sewint,1,getSewage, (scheduler,))
     try:
         result=fetch.performUpdate(keyEtc["testState"],keyEtc["configinfo"]["SEWAGE"],1,"sewage")
+        print("DEBUG: "+result, flush=True)
     except Exception as e:
         outerr="ERROR: "+str(e)
         # logfh.write(outerr)
         print(outerr, flush=True)
-    print("DEBUG: "+result, flush=True)
     output="Last run: "+datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     # logfh.write(output+"\n")
     print(output, flush=True)
