@@ -42,7 +42,7 @@ const Tide = ({theDate}) => {
                             {info.type}:
                         </div>
                         <div className='div-table-col'>
-                            {format(info.time,"hh:mm")}
+                            {format(info.time,"HH:mm")}
                         </div>
                     </div>
                     ))}

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { format } from 'date-fns';
 import Sea from './Sea';
 import './Layout.css';
 import './Tables.css';
@@ -54,7 +55,7 @@ const Weather = ({theHour,theDay}) => {
         <div className='div-table white'>
             <div className='div-table-row'>
                 <div className='div-table-col-max white'>
-                Weather Update: {weather.current.last_updated}<br/>
+                Data Update: {format(weather.current.last_updated, "yyyy-MM-dd HH:mm")}<br/>
                 </div>
             </div>
         </div>
@@ -121,7 +122,7 @@ const Weather = ({theHour,theDay}) => {
         <div className='div-table white'>
             <div className='div-table-row'>
                 <div className='div-table-col-max white'>
-                Forcast Time: {weather.forecast.forecastday[theDay].hour[theHour].time}<br/>
+                Forcast Time: {format(weather.forecast.forecastday[theDay].hour[theHour].time,"yyyy-MM-dd HH:mm")}<br/>
                 </div>
             </div>
         </div>

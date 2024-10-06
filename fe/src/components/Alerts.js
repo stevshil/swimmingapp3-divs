@@ -34,6 +34,9 @@ const Alerts = () => {
             console.log("Data not found, alert state: "+alertState)
             if (alertState == 200) {
                 found = 2;
+                clientTZ = Number(((new Date()).toString()).split("+")[1].split("")[1]);
+                alertsTime = new Date(alerts.updated)
+                alertsTime.setHours(alertsTime.getHours()+clientTZ)
             }
         } else {
             // console.log("Data found")
@@ -57,6 +60,7 @@ const Alerts = () => {
                 <div className='div-table-row white'>
                     <div className='div-table-col-max white'>
                         <div className='Alert'>&#128169; &ensp; Alerts &ensp; &#128169;</div>
+                        <div>Last updated: {format(alertsTime,'dd/MM/yyyy HH:mm')}</div>
                     </div>
                 </div>
             </div>
