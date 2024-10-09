@@ -42,7 +42,7 @@ const Tide = ({theDate}) => {
                             {info.type}:
                         </div>
                         <div className='div-table-col'>
-                            {format(info.time,"HH:mm")}
+                            {((info.time).split("T")[1]).replace(/:[0-9][0-9]\+.*$/,"")}
                         </div>
                     </div>
                     ))}
