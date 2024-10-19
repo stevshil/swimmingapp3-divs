@@ -20,6 +20,8 @@ def performUpdate(useenv,file_name,freq,api,*params):
     Fetch data from APIs and store on server for cahced use
     """
 
+    print("DEBUG ENV: "+usenv+" filename: "+file_name+" frequency: "+freq+" api: "+api+" params: "+params)
+
     # Check file state first
     if checkFileState(file_name,freq) == "OK" and api != "sewage":
         return "OK"
@@ -66,6 +68,9 @@ def checkFileState(file_name,freq):
         diff_letter="%d"
 
     # Check if it needs updating
+    if datetime.now().strftime("%d") != datetime.fromtimestamp(mtime).strftime("%d"):
+        return "UPDATE"
+    
     if datetime.now().strftime(diff_letter) != datetime.fromtimestamp(mtime).strftime(diff_letter):
         return "UPDATE"
     else:
