@@ -9,7 +9,7 @@ from loadConfig import loadConfig
 keyEtc=loadConfig()
 
 def tide(useenv):
-    sgapikey={"prod": keyEtc["sgapikey"], "DEBUG": keyEtc["sgapikey2"]}
+    sgapikey={"prod": keyEtc["sgapikey3"], "DEBUG": keyEtc["sgapikey2"]}
     apikey=sgapikey[useenv]
     result=fetchSimple("https://api.stormglass.io/v2/tide/extremes/point",apikey,{
                             'lat': keyEtc["latitude"],

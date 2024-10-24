@@ -14,6 +14,9 @@ def loadConfig():
     fapi=open("keys/apikey2.key","r")
     sgapikey2=fapi.readline().strip()
     fapi.close()
+    fapi=open("keys/apikey3.key","r")
+    sgapikey3=fapi.readline().strip()
+    fapi.close()
     flatlong=open("keys/latlong.data")
     latitude=flatlong.readline().strip()
     longitude=flatlong.readline().strip()
@@ -44,7 +47,7 @@ def loadConfig():
         "SEWAGEINT": os.getenv("SEWAGEINT")
     }
 
-    mainInfo={"sgapikey": sgapikey, "sgapikey2": sgapikey2, "latitude": latitude, "longitude": longitude, "location": location, "locationid": locationid, "gapi": gapi, "govapi": govapi, "areaid": areaid, "wapikey": wapikey, "testState": testState, "areaids": areaids, "configinfo": configinfo}
+    mainInfo={"sgapikey": sgapikey, "sgapikey2": sgapikey2, "sgapikey3": sgapikey3, "latitude": latitude, "longitude": longitude, "location": location, "locationid": locationid, "gapi": gapi, "govapi": govapi, "areaid": areaid, "wapikey": wapikey, "testState": testState, "areaids": areaids, "configinfo": configinfo}
 
     return (mainInfo)
 

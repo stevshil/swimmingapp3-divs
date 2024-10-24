@@ -53,7 +53,7 @@ def weatherHour(hour):
 
 @app.route("/tide", methods=["GET"])
 def tide():
-    result=fetch.performUpdate(keyEtc["testState"],keyEtc["configinfo"]["TIDES"],1,"tides")
+    result=fetch.performUpdate(keyEtc["testState"],keyEtc["configinfo"]["TIDES"],0,"tides")
     try:
         data=loadFileData("TIDES")
         return data, 200
@@ -64,7 +64,7 @@ def tide():
 
 @app.route("/tide/<tidedate>", methods=["GET"])
 def tideHour(tidedate):
-    result=fetch.performUpdate(keyEtc["testState"],keyEtc["configinfo"]["TIDES"],1,"tides")
+    result=fetch.performUpdate(keyEtc["testState"],keyEtc["configinfo"]["TIDES"],0,"tides")
     try:
         loadFileData("TIDES")
         data=present.getTideData(tidedate)

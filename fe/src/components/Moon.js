@@ -25,7 +25,7 @@ const Moon = ({theDay}) => {
     }, []);
 
     let moon_illum = "";
-    let moonpic="images/moon_phases/"
+    let moonpic="swim/images/moon_phases/"
 
     if (!moon.current || moon.forecast.forecastday.length == 0) {
         console.log("Data not found")
@@ -49,13 +49,14 @@ const Moon = ({theDay}) => {
         } else if (pic_phase.includes("new")) {
             pic_phase="new"
             moon_lum=""
-        } else if (pic_phase_full.includes("Last Q")) {
+        } else if (pic_phase.includes("last q")) {
             pic_phase="waning"
-        } else if (pic_phase_full.includes("First Q")) {
+        } else if (pic_phase.includes("first q")) {
             pic_phase="waxing"
         }
 
         moonpic=moonpic+pic_phase+moon_lum+"Z.jpg"
+        // console.log("MOON PIC: "+moonpic+" - pic_phase: "+pic_phase+" - moon_lum: "+moon_lum+" - pic_phase_full: "+pic_phase_full)
 
     }
 

@@ -2,7 +2,7 @@ services:
   weatherservice:
     build:
       context: .
-    image: steve353/weatherapi:v2-1.1
+    image: steve353/weatherapi:v2-1.2
     ports:
       - 5001:443
     volumes:

@@ -20,7 +20,10 @@ def performUpdate(useenv,file_name,freq,api,*params):
     Fetch data from APIs and store on server for cahced use
     """
 
-    print("DEBUG ENV: "+usenv+" filename: "+file_name+" frequency: "+freq+" api: "+api+" params: "+params)
+    try:
+        print("DEBUG ENV: "+usenv+" filename: "+file_name+" frequency: "+freq+" api: "+api+" params: "+params)
+    except:
+        pass
 
     # Check file state first
     if checkFileState(file_name,freq) == "OK" and api != "sewage":
@@ -122,7 +125,7 @@ if __name__ == "__main__":
             print(keyEtc["testState"],keyEtc["configinfo"]["SEWAGE"],1,"sewage")
             print(performUpdate(keyEtc["testState"],keyEtc["configinfo"]["SEWAGE"],1,"sewage"))
         if sys.argv[1] == "tide":
-            print(keyEtc["testState"],keyEtc["configinfo"]["TIDES"],1,"tides")
+            print(keyEtc["testState"],keyEtc["configinfo"]["TIDES"],0,"tides")
             print(performUpdate(keyEtc["testState"],keyEtc["configinfo"]["TIDES"],1,"tides"))
         if sys.argv[1] == "weather":
             print(keyEtc["testState"],keyEtc["configinfo"]["WEATHER"],1,"weather")
