@@ -25,7 +25,7 @@ const Moon = ({theDay}) => {
     }, []);
 
     let moon_illum = "";
-    let moonpic="swim/images/moon_phases/"
+    let moonpic="images/moon_phases/"
 
     if (!moon.current || moon.forecast.forecastday.length == 0) {
         console.log("Data not found")
