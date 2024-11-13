@@ -38,7 +38,7 @@ function App() {
       setDate(format(today,"yyyy-MM-dd"));
     }
 
-    if ( theDay == undefined ) {
+    if ( theDay === undefined ) {
       setDay(0);
     }
 

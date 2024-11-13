@@ -32,7 +32,7 @@ const Alerts = () => {
     try {
         if (! alerts.Alerts.length > 0) {
             console.log("Data not found, alert state: "+alertState)
-            if (alertState == 200) {
+            if (alertState === 200) {
                 found = 2;
                 clientTZ = Number(((new Date()).toString()).split("+")[1].split("")[1]);
                 alertsTime = new Date(alerts.updated)
@@ -68,6 +68,10 @@ const Alerts = () => {
                 <div className='div-table-row'>
                     <div className='div-table-col-max white'>
                         <h4>No Alerts</h4>
+                        <p>
+                            Last release: {format(alerts.lastoutfall.lastoutfall,'dd/MM/yyyy')}<br/>
+                            {alerts.lastoutfall.lastoutfalllocation}
+                        </p>
                     </div>
                 </div>
             </div>
