@@ -89,7 +89,8 @@ function App() {
             </div>
           <div>
             <Weather theHour={hour} theDay={theDay} />
-            <Tide theDate={theDate} />
+            <Tide theDay={theDay} />
+            {/* <Tide /> */}
             <Alerts />
             <SAS />
             <Moon theDay={theDay} />

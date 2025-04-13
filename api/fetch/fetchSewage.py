@@ -65,7 +65,8 @@ def govAlerts():
             newdata.append(info)
             print("ERROR: API not responding "+str(response))
 
-    newdata.append({'lastoutfall': lastoutfall, 'lastoutfalllocation': lastoutfalllocation})
+    if len(newdata) == 0:
+        newdata.append({'lastoutfall': lastoutfall, 'lastoutfalllocation': lastoutfalllocation})
         
     #print(newdata)
     return newdata
@@ -92,6 +93,7 @@ def govLive(areaid):
 
 def getAllAlerts():
     alerts=govAlerts()
+    lastoutfall=""
 
     # If no readings on last outfall do the following
     if 'lastoutfall' in alerts[0].keys():

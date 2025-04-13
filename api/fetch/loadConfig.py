@@ -44,7 +44,8 @@ def loadConfig():
         "SEATEMP": os.getenv("SEATEMP"),
         "DEBUG": os.getenv("DEBUG"),
         "SSL": os.getenv("SSL"),
-        "SEWAGEINT": os.getenv("SEWAGEINT")
+        "SEWAGEINT": os.getenv("SEWAGEINT"),
+        "PORT": os.getenv("PORT")
     }
 
     mainInfo={"sgapikey": sgapikey, "sgapikey2": sgapikey2, "sgapikey3": sgapikey3, "latitude": latitude, "longitude": longitude, "location": location, "locationid": locationid, "gapi": gapi, "govapi": govapi, "areaid": areaid, "wapikey": wapikey, "testState": testState, "areaids": areaids, "configinfo": configinfo}
