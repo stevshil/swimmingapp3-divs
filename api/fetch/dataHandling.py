@@ -44,7 +44,9 @@ def performUpdate(useenv,file_name,freq,api,*params):
         return writeFileData(file_name,result)
 
     if api == "tides":
-        result=tide(useenv)
+        # result=tide(useenv)
+        result = tide(useenv)
+        print("DEBUG TIDE: "+str(result))
         return writeFileData(file_name,result)
 
     if api == "weather":

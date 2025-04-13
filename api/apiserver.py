@@ -57,22 +57,22 @@ def tide():
     try:
         data=loadFileData("TIDES")
         return data, 200
-    except Exception:
-        msg="Problem fetching TIDES data - "+str(e)
+    except Exception as e:
+        msg='[{"Error:", "Problem fetching TIDES data - '+str(e)+'"}]'
         result={"ERROR": msg}
         return json.dumps(result), 404
 
-@app.route("/tide/<tidedate>", methods=["GET"])
-def tideHour(tidedate):
-    result=fetch.performUpdate(keyEtc["testState"],keyEtc["configinfo"]["TIDES"],0,"tides")
-    try:
-        loadFileData("TIDES")
-        data=present.getTideData(tidedate)
-        return data, 200
-    except Exception:
-        msg="Problem fetching TIDES data - "+str(e)
-        result={"ERROR": msg}
-        return json.dumps(result), 404
+# @app.route("/tide/<tidedate>", methods=["GET"])
+# def tideHour(tidedate):
+#     result=fetch.performUpdate(keyEtc["testState"],keyEtc["configinfo"]["TIDES"],0,"tides")
+#     try:
+#         loadFileData("TIDES")
+#         data=present.getTideData(tidedate)
+#         return data, 200
+#     except Exception:
+#         msg="Problem fetching TIDES data - "+str(e)
+#         result={"ERROR": msg}
+#         return json.dumps(result), 404
 
 
 @app.route("/sewage", methods=["GET"])
@@ -116,19 +116,19 @@ if __name__ == "__main__":
     print("testState: "+testState)
 
     # Check if SSL directory exists
-    # try:
-    #     print("Checking pems")
-    #     if os.path.exists('Certs/fullchain.pem') and runssl == True:
-    #         print("SSL is true")
-    #         runssl=True
-    #         try:
-    #             context = ('Certs/fullchain.pem', 'Certs/privkey.pem')
-    #         except Exception:
-    #             context = None
-    #     else:
-    #         context = None
-    # except Exception:
-    #     context = None
+    try:
+        print("Checking pems")
+        if os.path.exists('Certs/fullchain.pem') and runssl == True:
+            print("SSL is true")
+            runssl=True
+            try:
+                context = ('Certs/fullchain.pem', 'Certs/privkey.pem')
+            except Exception:
+                context = None
+        else:
+            context = None
+    except Exception:
+        context = None
     
     try:
         run_args=sys.argv
@@ -137,31 +137,32 @@ if __name__ == "__main__":
         pass
     
     print("After SSL check: runssl: "+str(runssl))
+    the_port = keyEtc["configinfo"]["PORT"]
 
     try:
         if testState.upper() == "DEBUG":
             print("Test State: "+testState)
-            print("PORT: 5001")
+            print(f"PORT: {the_port}")
             if runssl == True:
                 print("WITH SSL")
-                app.run(host='0.0.0.0',port=5001,debug=True,ssl_context=context)
+                app.run(host='0.0.0.0',port=the_port,debug=True,ssl_context=context)
             else:
-                app.run(host='0.0.0.0',port=5001,debug=True)
+                app.run(host='0.0.0.0',port=the_port,debug=True)
         elif runssl == False:
             print("BASIC")
-            print("PORT: 5001")
-            serve(app, host='0.0.0.0', port=5001)
+            print("PORT: {the_port}")
+            serve(app, host='0.0.0.0', port=the_port)
         else:
             print("SSL")
-            print("PORT: 5001")
-            serve(app, host='0.0.0.0', port=5001, url_scheme='https')
+            print(f"PORT: {the_port}")
+            serve(app, host='0.0.0.0', port=the_port, url_scheme='https')
     except Exception as e:
         print(str(e))
         if runssl == False:
             print("BASIC")
-            print("PORT: 5001")
-            serve(app, host='0.0.0.0', port=5001)
+            print(f"PORT: {the_port}")
+            serve(app, host='0.0.0.0', port=the_port)
         else:
             print("SSL")
-            print("PORT: 5001")
-            serve(app, host='0.0.0.0', port=5001, url_scheme='https')
+            print("PORT: ${the_port}")
+            serve(app, host='0.0.0.0', port=the_port, url_scheme='https')
