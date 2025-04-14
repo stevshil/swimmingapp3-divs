@@ -3,13 +3,13 @@ import './Layout.css';
 
 const Sea = ({the_hour}) => {
 
-    const apiurl = process.env.REACT_APP_SERVER_API_URL;
+    const apiurl = process.env.REACT_APP_SERVER_API_URL+'/sea';
 
     const [sea, setSea] = useState([]);
     useEffect(() => {
         async function getData() {
             try {
-                let response = await fetch(apiurl+'/sea');
+                let response = await fetch(apiurl);
                 let data = await response.json();
                 setSea(data);
             } catch {
@@ -18,7 +18,7 @@ const Sea = ({the_hour}) => {
         };
 
         getData();
-    }, []);
+    }, [apiurl]);
 
     let waterTemp=0;
     // let the_hour = new Date();

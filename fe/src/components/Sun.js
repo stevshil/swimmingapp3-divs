@@ -8,13 +8,13 @@ const Sun = ({theDay}) => {
 
     let found = 0;
 
-    const apiurl = process.env.REACT_APP_SERVER_API_URL;
+    const apiurl = process.env.REACT_APP_SERVER_API_URL+'/weather';
 
     const [sun, setSun] = useState([]);
     useEffect(() => {
         async function getData() {
             try {
-                let response = await fetch(apiurl+'/weather');
+                let response = await fetch(apiurl);
                 let data = await response.json();
                 setSun(data);
             } catch {
@@ -23,7 +23,7 @@ const Sun = ({theDay}) => {
         };
 
         getData();
-    }, []);
+    }, [apiurl]);
 
     if (!sun.current) {
         console.log("Data not found")

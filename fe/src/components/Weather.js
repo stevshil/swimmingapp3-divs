@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import Sea from './Sea';
 import './Layout.css';
 import './Tables.css';
@@ -8,7 +8,7 @@ const Weather = ({theHour,theDay}) => {
 
     let found = 0;
 
-    const apiurl = process.env.REACT_APP_SERVER_API_URL;
+    const apiurl = process.env.REACT_APP_SERVER_API_URL+'/weather';
     console.log("APIURL: "+apiurl);
 
     const [weather, setWeather] = useState([]);
@@ -17,7 +17,7 @@ const Weather = ({theHour,theDay}) => {
     useEffect(() => {
         async function getData() {
             try {
-                let response = await fetch(apiurl+'/weather');
+                let response = await fetch(apiurl);
                 let data = await response.json();
                 setWeather(data);
             } catch {
@@ -36,7 +36,7 @@ const Weather = ({theHour,theDay}) => {
         }
 
         getData();
-    }, [timeData]);
+    }, [timeData,apiurl]);
 
     if (!weather.current) {
         found = 0;
@@ -55,7 +55,8 @@ const Weather = ({theHour,theDay}) => {
         <div className='div-table white'>
             <div className='div-table-row'>
                 <div className='div-table-col-max white'>
-                Data Update: {format(weather.current.last_updated, "yyyy-MM-dd HH:mm")}<br/>
+                {/* Data Update: {format(weather.current.last_updated, "yyyy-MM-dd HH:mm")}<br/> */}
+                Data Update: {weather.current.last_updated? format(parseISO(weather.current.last_updated), 'dd/MM/yyyy HH:mm') : "N/A"}<br />
                 </div>
             </div>
         </div>
@@ -122,7 +123,8 @@ const Weather = ({theHour,theDay}) => {
         <div className='div-table white'>
             <div className='div-table-row'>
                 <div className='div-table-col-max white'>
-                Forcast Time: {format(weather.forecast.forecastday[theDay].hour[theHour].time,"yyyy-MM-dd HH:mm")}<br/>
+                {/* Forecast Time: {format(weather.forecast.forecastday[theDay].hour[theHour].time,"yyyy-MM-dd HH:mm")}<br/> */}
+                Forecast Time: {weather.forecast.forecastday[theDay].hour[theHour].time? format(parseISO(weather.forecast.forecastday[theDay].hour[theHour].time), 'dd/MM/yyyy HH:mm') : "N/A"}<br />
                 </div>
             </div>
         </div>

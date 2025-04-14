@@ -94,11 +94,13 @@
   height: 250px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-top: 30px;
   text-align: center;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  filter: brightness(1.08);
 }
 
 .Alert {

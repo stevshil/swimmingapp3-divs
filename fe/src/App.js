@@ -9,9 +9,9 @@ import SAS from './components/SAS';
 import Moon from './components/Moon';
 import Sun from './components/Sun';
 import './components/Tables.css';
-import plus from './images/plus.png';
-import minus from './images/minus.webp';
-import now from './images/Now.webp';
+import plus from './images/plus3.png';
+import minus from './images/minus.png';
+import now from './images/Now2.webp';
 
 // App currently only deals with 3 day
 
@@ -78,19 +78,18 @@ function App() {
         <Header />
         <div className="main-row">
         <div className="controls">
-            <h3>Change Hour</h3>
-            <img src={plus} onClick={() => setHour(hour+1)} alt="Plus" width="40%" />
+            <h4>Change Hour</h4>
+            <img src={plus} onClick={() => setHour(hour+1)} alt="Plus" width="75%" />
             <br/>
-            <img src={now} onClick={() => setAllDatesNow()} alt="Now" width="40%" />
+            <img src={now} onClick={() => setAllDatesNow()} alt="Now" width="75%" />
             <br/>
-            <img src={minus} onClick={() => setHour(hour-1)} alt="Minus" width="40%" />
+            <img src={minus} onClick={() => setHour(hour-1)} alt="Minus" width="75%" />
             <br/>
             &nbsp;
             </div>
           <div>
             <Weather theHour={hour} theDay={theDay} />
             <Tide theDay={theDay} />
-            {/* <Tide /> */}
             <Alerts />
             <SAS />
             <Moon theDay={theDay} />
