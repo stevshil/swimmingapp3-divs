@@ -48,6 +48,16 @@ div, span, td {
     color: white;  
     text-align: center;
 }
+.table-header {
+    background-color: silver;
+    border-color: silver;
+    color: darkslategray;
+    font-weight: 1000;
+    vertical-align: middle;
+    padding-top: 5px;
+    margin: 0px;
+}
+
 .alignright {
     text-align: right;
 }

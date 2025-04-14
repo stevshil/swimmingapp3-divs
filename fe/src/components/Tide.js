@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 import './Layout.css';
+import './Tide.css';
+import { FaSortAmountUp, FaSortAmountDownAlt } from "react-icons/fa";
+
 
 const Tide = ({theDay}) => {
-// const Tide = () => {
 
     let found = 0;
     let tideupdated = 0;
     let info = {};
-    const apiurl = process.env.REACT_APP_SERVER_API_URL;
+    const apiurl = process.env.REACT_APP_SERVER_API_URL+'/tide';
     console.log("TIDE URL: "+apiurl+"/tide");
     console.log("Tide DATE: " + theDay);
 
@@ -18,7 +20,7 @@ const Tide = ({theDay}) => {
         async function getData() {
             try {
                 // let response = await fetch(apiurl+'/tide/'+theDate);
-                let response = await fetch(apiurl+'/tide');
+                let response = await fetch(apiurl);
                 let data = await response.json();
                 setTide(data);
                 tideupdated = data.updated;
@@ -49,14 +51,29 @@ const Tide = ({theDay}) => {
         return (
             <>
                 <div className='div-table'>
-                    {info.map(info => (
+                    <div className='div-table-row'>
+                        <div className='div-table-col-left table-header' key="type">
+                            Type
+                        </div>
+                        <div className='div-table-col-left table-header' key="time">
+                            Time
+                        </div>
+                        <div className='div-table-col-left table-header' key="height">
+                            Height
+                        </div>
+                    </div>
+                    {info.map((info, index) => (
                         <div className='div-table-row'>
-                            <div className='div-table-col'>
-                                {info.type}:
+                            <div className='div-table-col-left' key="{index}-type">
+                                {/* {info.type} */}
+                                {info.type === "High" ? <span className="high">High </span> : <span className="low">Low </span>}
+                                {info.type === "High" ? <FaSortAmountUp className="FaSortAmountUp" /> : <FaSortAmountDownAlt className="FaSortAmountDownAlt" />}
                             </div>
-                            <div className='div-table-col'>
-                                {/* {((info.time).split("T")[1]).replace(/:[0-9][0-9]\+.*$/, "")} */}
+                            <div className='div-table-col-left' key="{index}-time">
                                 {info.time}
+                            </div>
+                            <div className='div-table-col-left' key="{index}-height">
+                                {info.height}
                             </div>
                         </div>
                     ))}
@@ -68,7 +85,7 @@ const Tide = ({theDay}) => {
         return (
             <div className='div-table'>
                 <div className='div-table-row'>
-                    <div className='div-table-col-max'>
+                    <div className='div-table-col-max' key="waiting">
                         <h3>Waiting for tide data</h3>
                     </div>
                 </div>

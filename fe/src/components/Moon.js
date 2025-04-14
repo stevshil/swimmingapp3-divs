@@ -7,13 +7,13 @@ const Moon = ({theDay}) => {
     let found = 0;
     console.log("theDay: "+theDay);
 
-    const apiurl = process.env.REACT_APP_SERVER_API_URL;
+    const apiurl = process.env.REACT_APP_SERVER_API_URL+"/weather";
 
     const [moon, setMoon] = useState([]);
     useEffect(() => {
         async function getData() {
             try {
-                let response = await fetch(apiurl+'/weather');
+                let response = await fetch(apiurl);
                 let data = await response.json();
                 setMoon(data);
             } catch {
@@ -22,12 +22,12 @@ const Moon = ({theDay}) => {
         };
 
         getData();
-    }, []);
+    }, [apiurl]);
 
     let moon_illum = "";
     let moonpic="images/moon_phases/"
 
-    if (!moon.current || moon.forecast.forecastday.length == 0) {
+    if (!moon.current || moon.forecast.forecastday.length === 0) {
         console.log("Data not found")
     } else {
         // console.log("Data found")
@@ -38,7 +38,7 @@ const Moon = ({theDay}) => {
         // Calculate moon phase picture
         var moon_lum=Math.round(moon_illum*.12)
         var pic_phase = moon.forecast.forecastday[theDay].astro.moon_phase.substring(0,6).toLowerCase();
-        var pic_phase_full = ""
+        // var pic_phase_full = ""
         if ( moon_lum === 0 ) {
             moon_lum=""
             pic_phase="new"
