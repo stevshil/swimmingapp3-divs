@@ -114,3 +114,7 @@
   overflow: hidden;
   display: flex;
 }
+
+.alertrelease {
+  font-size: 10pt;
+}

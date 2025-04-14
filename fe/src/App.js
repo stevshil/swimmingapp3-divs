@@ -2,16 +2,15 @@ import React, {useState} from 'react';
 import { format } from 'date-fns';
 import './App.css';
 import Header from './components/Header';
-import Weather from './components/Weather';
-import Tide from './components/Tide';
-import Alerts from './components/Alerts';
-import SAS from './components/SAS';
-import Moon from './components/Moon';
-import Sun from './components/Sun';
+import Home from './Home';
+import About from './components/About';
 import './components/Tables.css';
 import plus from './images/plus3.png';
 import minus from './images/minus.png';
 import now from './images/Now2.webp';
+import home from './images/home.png';
+import about from './images/about.png';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 // App currently only deals with 3 day
 
@@ -81,20 +80,23 @@ function App() {
             <h4>Change Hour</h4>
             <img src={plus} onClick={() => setHour(hour+1)} alt="Plus" width="75%" />
             <br/>
-            <img src={now} onClick={() => setAllDatesNow()} alt="Now" width="75%" />
+            <img src={now} onClick={() => setAllDatesNow()} alt="Now" width="70%" />
             <br/>
             <img src={minus} onClick={() => setHour(hour-1)} alt="Minus" width="75%" />
             <br/>
-            &nbsp;
+            <img src={home} onClick={() => window.location.href = "/swim"} alt="Home" width="75%" />
+            <br/>
+            <img src={about} onClick={() => window.location.href = "/swim/about"} alt="About" width="75%" />
             </div>
-          <div>
-            <Weather theHour={hour} theDay={theDay} />
-            <Tide theDay={theDay} />
-            <Alerts />
-            <SAS />
-            <Moon theDay={theDay} />
-            <Sun theDay={theDay} />
-          </div>
+            <div>
+            <BrowserRouter>
+            <Routes>
+              <Route path="/swim" element={<Home theDay={theDay} hour={hour} />} />
+              <Route path="/about" element={<About />} />
+              <Route path="*" element={<Home theDay={theDay} hour={hour} />} />
+              </Routes>
+            </BrowserRouter>
+            </div>
         </div>
       </div>
     </div>

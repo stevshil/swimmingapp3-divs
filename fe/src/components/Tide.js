@@ -83,6 +83,7 @@ const Tide = ({theDay}) => {
     }
     if (found === 0) {
         return (
+            <>
             <div className='div-table'>
                 <div className='div-table-row'>
                     <div className='div-table-col-max' key="waiting">
@@ -90,6 +91,7 @@ const Tide = ({theDay}) => {
                     </div>
                 </div>
             </div>
+            </>
         )
     }
 };

@@ -68,7 +68,7 @@ const Alerts = () => {
                 <div className='div-table-row'>
                     <div className='div-table-col-max white'>
                         <h4>No Alerts</h4>
-                        <p>
+                        <p className="alertrelease">
                             {/* Last release: {format(alerts.lastoutfall.lastoutfall,'dd/MM/yyyy')}<br/> */}
                             Last release: {alerts.lastoutfall?.lastoutfall ? format(parseISO(alerts.lastoutfall.lastoutfall), 'dd/MM/yyyy') : "N/A"}<br />
                             {alerts.lastoutfall.lastoutfalllocation}
