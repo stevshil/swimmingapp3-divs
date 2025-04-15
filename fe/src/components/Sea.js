@@ -30,14 +30,14 @@ const Sea = ({the_hour}) => {
         // console.log("Data found")
         console.log(sea + ": "+the_hour)
         let tmp=sea.hours[the_hour].waterTemperature
-        waterTemp=((tmp.meto+tmp.noaa+tmp.sg)/3).toFixed(2)
+        waterTemp=((tmp.meto+tmp.noaa+tmp.sg)/3).toFixed(1)
     }
    
     return (
         <>
             <div className='div-table-row'>
                 <div className='seatemp'>
-                    Sea: {waterTemp} &#8451;
+                    Sea: {waterTemp}&#8451;
                 </div>
             </div>
         </>
