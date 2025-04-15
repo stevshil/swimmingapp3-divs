@@ -82,38 +82,38 @@ const Alerts = () => {
     if ( found === 1 ) {
         return (
             <>
-                <div className='div-table white'>
-                    <div className='div-table-row white'>
-                        <div className='div-table-col-max white'>
-                            <div className='Alert'>&#128169; &ensp; Alerts &ensp; &#128169;</div>
-                            <div>Last updated: {format(alertsTime,'dd/MM/yyyy HH:mm')}</div>
-                        </div>
-                    </div>
+            <div className='div-table white'>
+                <div className='div-table-row white'>
+                <div className='div-table-col-max white'>
+                    <div className='Alert'>&#128169; &ensp; Alerts &ensp; &#128169;</div>
+                    <div>Last updated: {format(alertsTime, 'dd/MM/yyyy HH:mm')}</div>
                 </div>
-                <div className='div-table'>
-                    {alerts.Alerts.map((data) => ( 
-                    <div className='div-table-row'>
-                        <div className='div-table-col-left'>
-                            Location<br/>
-                            Started<br/>
-                            Stopped<br/>
-                            Activity<br/>
-                            Impact<br/>
-                            Outlet
-                            <hr/>
-                        </div>
-                        <div className='div-table-col-right'>
-                            {data.bathingSite}<br/>
-                            {format(data.eventStart, 'dd/MM/yyyy HH:mm')}<br/>
-                            {format(data.eventStop, 'dd/MM/yyyy HH:mm')}<br/>
-                            {data.activity}<br/>
-                            {data.impact}<br/>
-                            <span className="outlet">{data.outlet}</span>
-                            <hr/>
-                        </div>
-                    </div>
-                    ))}
                 </div>
+            </div>
+            <div className='div-table'>
+                {alerts.Alerts.map((data) => ( 
+                <div className='div-table-row' key={data.id}>
+                <div className='div-table-col-left'>
+                    Location<br/>
+                    Started<br/>
+                    Stopped<br/>
+                    Activity<br/>
+                    Impact<br/>
+                    Outlet
+                    <hr/>
+                </div>
+                <div className='div-table-col-right'>
+                    {data.bathingSite}<br/>
+                    {data.eventStart ? format(parseISO(data.eventStart), 'dd/MM/yyyy HH:mm') : "N/A"}<br/>
+                    {data.eventStop ? format(parseISO(data.eventStop), 'dd/MM/yyyy HH:mm') : "N/A"}<br/>
+                    {data.activity}<br/>
+                    {data.impact}<br/>
+                    <span className="outlet">{data.outlet}</span>
+                    <hr/>
+                </div>
+                </div>
+                ))}
+            </div>
             </>
         );
     }
