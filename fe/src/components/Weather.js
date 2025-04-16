@@ -70,7 +70,7 @@ const Weather = ({theHour,theDay}) => {
                     <br />
                     Max: {weather.forecast.forecastday[theDay].day.maxtemp_c} &#8451;
                     <br />
-                    At {weather.forecast.forecastday[theDay].hour[theHour].time? format(parseISO(weather.forecast.forecastday[theDay].hour[theHour].time), 'HH:mm') : "N/A"}: {weather.forecast.forecastday[theDay].hour[theHour].temp_c.toFixed(1).padStart(5," ")} &#8451;
+                    {weather.forecast.forecastday[theDay].hour[theHour].time? format(parseISO(weather.forecast.forecastday[theDay].hour[theHour].time), 'HH:mm') : "N/A"}: {weather.forecast.forecastday[theDay].hour[theHour].temp_c.toFixed(1)} &#8451;
                 </div>
             </div>
             <div className='div-table-row'>
