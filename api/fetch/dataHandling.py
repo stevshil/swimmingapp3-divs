@@ -3,7 +3,7 @@ Module to retrieve the different API data.
 API data will be stored in local JSON file.
 """
 
-import os
+import os, re
 from datetime import datetime
 import shutil
 from fetchSeaTeamp import seaTemp
@@ -51,6 +51,8 @@ def performUpdate(useenv,file_name,freq,api,*params):
 
     if api == "weather":
         result=weather()
+        if re.match(r"error \d{3} .*", result):
+            return "NOK - "+str(result)
         return writeFileData(file_name,result)
 
 
@@ -58,6 +60,10 @@ def checkFileState(file_name,freq):
     """
     Check if the API data file needs to be updated
     """
+
+    # Check if file is empty
+    if os.path.getsize(file_name) == 0:
+        return "NEW"
     
     # Use of stat to check file modified time
     try:

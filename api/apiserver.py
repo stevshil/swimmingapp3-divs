@@ -34,7 +34,7 @@ def weather():
     try:
         data=loadFileData("WEATHER")
         return data, 200
-    except Exception:
+    except Exception as e:
         msg="Problem fetching WEATHER data - "+str(e)
         result={"ERROR": msg}
         return json.dumps(result), 404
