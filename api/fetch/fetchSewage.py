@@ -18,6 +18,10 @@ def govAlerts():
         response = requests.get('https://www.southernwater.co.uk/gateway/Beachbuoy/1.0/api/v1.0/Spills/GetHistoricSpills',
                             params={'areaid': areaid},
                             headers={'x-Gateway-APIKey': keyEtc["govapi"]})
+        
+        if response.status_code == 503:
+            print("ERROR: API not responding "+str(response))
+            return [{"bathingSite": "ERR", "eventStart": "ERR", "eventStop": "ERR", "activity": "API not responding", "duration-mins": 0, "impact": "NA", "outlet": "NA"}]
 
         if response.status_code == 200:
             json_data = response.json()

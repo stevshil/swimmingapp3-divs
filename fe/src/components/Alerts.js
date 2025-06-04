@@ -80,6 +80,19 @@ const Alerts = () => {
         )
     }
     if ( found === 1 ) {
+        if ( alerts.Alerts[0].activity === "API not responding") {
+            return (
+                <div className='div-table white'>
+                    <div className='div-table-row white'>
+                        <div className='div-table-col-max white'>
+                            <h3>API not responding</h3>
+                            <p>There is an issue with Southern Water API.</p>
+                            <p>Use the links below to see maps.</p>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         return (
             <>
             <div className='div-table white'>
