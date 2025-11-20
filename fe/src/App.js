@@ -92,8 +92,6 @@ function App() {
             <Weather theHour={hour} theDay={theDay} />
             <Tide theDay={theDay} />
             <Alerts />
-            <SAS />
-            <Southern />
             <Moon theDay={theDay} />
             <Sun theDay={theDay} />
           </div>

@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { format,parseISO } from 'date-fns';
+import SAS from './SAS';
+import Southern from './Southern';
 import './Layout.css';
 
 const Alerts = () => {
@@ -85,9 +87,11 @@ const Alerts = () => {
                 <div className='div-table white'>
                     <div className='div-table-row white'>
                         <div className='div-table-col-max white'>
-                            <h3>API not responding</h3>
-                            <p>There is an issue with Southern Water API.</p>
-                            <p>Use the links below to see maps.</p>
+                            <h3>Check sewage status:</h3>
+                            <Southern />
+                            <br />
+                            <SAS />
+                            <br />
                         </div>
                     </div>
                 </div>

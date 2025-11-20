@@ -6,7 +6,7 @@ class SAS extends Component {
         return (
             <>
                 <div align='center' id="sas">
-                    <a href="https://www.sas.org.uk/water-quality/sewage-pollution-alerts/" target="sas">Sufers Against Sewage Map</a>
+                    <button className="threeD-button" onClick={() => window.open("https://www.sas.org.uk/water-quality/sewage-pollution-alerts/")}>Surfers Agains Sewage</button>
                 </div>
             </>
         );
