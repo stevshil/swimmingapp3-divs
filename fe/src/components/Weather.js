@@ -91,7 +91,8 @@ const Weather = ({theHour,theDay}) => {
                     Rain: {weather.forecast.forecastday[theDay].hour[theHour].precip_mm} mm<br/>
                     Rain Now: {weather.forecast.forecastday[theDay].hour[theHour].chance_of_rain} %<br/>
                     Snow Now: {weather.forecast.forecastday[theDay].hour[theHour].chance_of_snow} %<br/>
-                    Rain Today: {weather.forecast.forecastday[theDay].day.daily_chance_of_rain} %<br/>
+                    Rain Today: {parseInt(weather.forecast.forecastday[theDay].day.daily_chance_of_rain) < 10 ? weather.forecast.forecastday[theDay].day.daily_chance_of_rain+" %" : weather.forecast.forecastday[theDay].day.daily_chance_of_rain+"%"}<br/>
+                    {console.log("INT: "+parseInt(weather.forecast.forecastday[theDay].day.daily_chance_of_rain) < 10)}
                     Snow Today: {weather.forecast.forecastday[theDay].day.daily_chance_of_snow} %
                 </div>
             </div>

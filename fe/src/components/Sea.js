@@ -29,8 +29,9 @@ const Sea = ({the_hour}) => {
     } else {
         // console.log("Data found")
         console.log(sea + ": "+the_hour)
-        let tmp=sea.hours[the_hour].waterTemperature
-        waterTemp=((tmp.meto+tmp.noaa+tmp.sg)/3).toFixed(1)
+        let wtemp=Object.values(sea.hours[the_hour].waterTemperature)
+        // waterTemp=((tmp.meto+tmp.metno+tmp.sg)/3).toFixed(1)
+        waterTemp = (wtemp.reduce((sum, tmp) => sum + tmp, 0) /wtemp.length).toFixed(1);
     }
    
     return (
