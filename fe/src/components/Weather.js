@@ -89,11 +89,10 @@ const Weather = ({theHour,theDay}) => {
                 </div>
                 <div className='div-table-col rain alignright'>
                     Rain: {weather.forecast.forecastday[theDay].hour[theHour].precip_mm} mm<br/>
-                    Rain Now: {weather.forecast.forecastday[theDay].hour[theHour].chance_of_rain} %<br/>
-                    Snow Now: {weather.forecast.forecastday[theDay].hour[theHour].chance_of_snow} %<br/>
-                    Rain Today: {parseInt(weather.forecast.forecastday[theDay].day.daily_chance_of_rain) < 10 ? weather.forecast.forecastday[theDay].day.daily_chance_of_rain+" %" : weather.forecast.forecastday[theDay].day.daily_chance_of_rain+"%"}<br/>
-                    {console.log("INT: "+parseInt(weather.forecast.forecastday[theDay].day.daily_chance_of_rain) < 10)}
-                    Snow Today: {weather.forecast.forecastday[theDay].day.daily_chance_of_snow} %
+                    Rain Now: {parseInt(weather.forecast.forecastday[theDay].hour[theHour].chance_of_rain) < 10 ? (weather.forecast.forecastday[theDay].hour[theHour].chance_of_rain).toFixed+" %" : (weather.forecast.forecastday[theDay].hour[theHour].chance_of_rain).toFixed(0)+"%" }<br/>
+                    Snow Now: {parseInt(weather.forecast.forecastday[theDay].hour[theHour].chance_of_snow) < 10 ? (weather.forecast.forecastday[theDay].hour[theHour].chance_of_snow).toFixed(0)+" %" : (weather.forecast.forecastday[theDay].hour[theHour].chance_of_snow).toFixed(0)+"%" }<br/>
+                    Rain Today: {parseInt(weather.forecast.forecastday[theDay].day.daily_chance_of_rain) < 10 ? (weather.forecast.forecastday[theDay].day.daily_chance_of_rain).toFixed(0)+" %" : (weather.forecast.forecastday[theDay].day.daily_chance_of_rain).toFixed(0)+"%"}<br/>
+                    Snow Today: {parseInt(weather.forecast.forecastday[theDay].day.daily_chance_of_snow) < 10 ? (weather.forecast.forecastday[theDay].day.daily_chance_of_snow).toFixed(0)+" %" : (weather.forecast.forecastday[theDay].day.daily_chance_of_snow).toFixed(0)+"%"}
                 </div>
             </div>
         </div>
