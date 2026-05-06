@@ -11,6 +11,7 @@ defusedxml==0.7.1
 filelock==3.16.1
 Flask==2.2.5
 Flask-Cors==5.0.0
+greenlet==3.5.0
 html5lib==1.1
 idna==3.7
 itsdangerous==2.1.2
@@ -27,6 +28,7 @@ pip-requirements-parser==32.0.1
 pip_audit==2.7.3
 pipdeptree==2.23.4
 py-serializable==1.1.1
+pyee==13.0.1
 Pygments==2.18.0
 pyparsing==3.1.4
 python-dotenv==1.0.1

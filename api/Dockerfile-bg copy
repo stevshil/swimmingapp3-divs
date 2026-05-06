@@ -1,0 +1,43 @@
+FROM python:3.12.13-slim
+# Update system
+RUN apt-get update && apt-get install -y \
+    libnss3 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libxkbcommon0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    libgbm1 \
+    libasound2 \
+    libpangocairo-1.0-0 \
+    libpango-1.0-0 \
+    libcairo2 \
+    libx11-6 \
+    libxext6 \
+    libxfixes3 \
+    libxrender1 \
+    libxshmfence1 \
+    wget \
+    gnupg \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+# Install the app
+COPY requirements.txt /tmp
+RUN mkdir -p /app/data /app/keys /app/background /app/logs
+RUN pip install playwright
+# Install browser binaries (Chromium only)
+RUN playwright install
+RUN playwright install --with-deps chromium
+COPY background/*.py /app
+COPY startbg.sh /app
+# Set up container connectivity
+RUN chmod +x /app/new_sewage.py /app/startbg.sh
+WORKDIR /app
+VOLUME /app/data
+VOLUME /app/keys
+VOLUME /app/Certs
+VOLUME /app/.env
+# ENTRYPOINT [ "/app/startbg.sh"]
+CMD ["/app/startbg.sh"]

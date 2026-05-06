@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [[ -e /app/Certs/fullchain.pem ]]
+if [ -e /app/Certs/fullchain.pem ]
 then
     cp /etc/nginx/http.d/default.conf.ssl /etc/nginx/http.d/default.conf
 else
@@ -8,6 +8,7 @@ else
 fi
 (
 nginx
-python background/sewage.py >/app/logs/sewage.log 2>&1 &
+# python background/new_sewage.py >/app/logs/sewage.log 2>&1 &
+# python background/new_sewage.py >/dev/null &
 python apiserver.py 
 )>/dev/stdout 2>/dev/stderr

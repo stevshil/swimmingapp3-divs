@@ -6,10 +6,11 @@ RUN pip install -r /tmp/requirements.txt
 COPY *.py /app
 COPY fetch/*.py /app/fetch/
 COPY present/*.py /app/present
-COPY background/*.py /app/background
+# COPY background/*.py /app/background
 # COPY data/* /app/data/
 # Install NGINX enable production ready
 RUN apk add nginx
+# RUN apt -y update && apt-get -y install nginx procps
 COPY nginx/default.conf.http /etc/nginx/http.d/default.conf.http
 COPY nginx/default.conf.ssl /etc/nginx/http.d/default.conf.ssl
 COPY nginx/nginx.conf /etc/nginx/nginx.conf

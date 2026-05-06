@@ -2,7 +2,8 @@ services:
   weatherservice:
     build:
       context: .
-    image: steve353/weatherapi:v3.4.2
+      dockerfile: Dockerfile
+    image: steve353/weatherapi:3.5
     ports:
       - 5002:5002
     volumes:
@@ -10,3 +11,10 @@ services:
       - ./keys:/app/keys
       - ./Certs:/app/Certs
       - ./.env:/app/.env:ro
+  bgservice:
+    build:
+      context: .
+      dockerfile: Dockerfile-bg
+    image: steve353/sewagescraper:1.0
+    volumes:
+      - ./data:/app/data

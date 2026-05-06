@@ -1,0 +1,14 @@
+FROM mcr.microsoft.com/playwright/python:v1.49.1-jammy
+
+WORKDIR /app
+
+RUN pip install playwright
+RUN playwright install
+RUN playwright install --with-deps chromium
+
+COPY background/*.py /app
+COPY startbg.sh /app
+
+RUN chmod +x /app/startbg.sh
+
+CMD ["/app/startbg.sh"]
