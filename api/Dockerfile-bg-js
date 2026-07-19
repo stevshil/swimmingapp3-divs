@@ -1,0 +1,22 @@
+FROM node:alpine3.23
+
+# Install Chromium + required libs
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont
+
+WORKDIR /app
+
+COPY background/package.json background/new_sewage.js /app
+COPY background/new_sewage.js /app
+
+# Install dependencies (puppeteer + csvtojson)
+RUN npm install
+
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+CMD ["node", "new_sewage.js"]

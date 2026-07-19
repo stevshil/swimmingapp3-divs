@@ -34,7 +34,7 @@ const Tide = ({theDay}) => {
         getData();
     }, [tideupdated]);
 
-    if (tide.length == 0) {
+    if (tide.length === 0) {
         console.log("Data not found")
     } else {
         console.log("TIDE: " + JSON.stringify(tide.tide[theDay].data, null, 2));

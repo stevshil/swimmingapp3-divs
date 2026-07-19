@@ -25,7 +25,7 @@ const Moon = ({theDay}) => {
     }, [apiurl]);
 
     let moon_illum = "";
-    let moonpic="images/moon_phases/"
+    let moonpic=process.env.PUBLIC_URL+"/images/moon_phases/"
 
     if (!moon.current || moon.forecast.forecastday.length === 0) {
         console.log("Data not found")
@@ -37,7 +37,11 @@ const Moon = ({theDay}) => {
 
         // Calculate moon phase picture
         var moon_lum=Math.round(moon_illum*.12)
-        var pic_phase = moon.forecast.forecastday[theDay].astro.moon_phase.substring(0,6).toLowerCase();
+        moon_lum=moon_lum+"Z.jpg"
+        var pic_phase = moon.forecast.forecastday[theDay].astro.moon_phase.substring(0,7).toLowerCase();
+        console.log("PHASE: "+pic_phase)
+        console.log("LUM: "+moon_lum)
+        console.log("ASTROPHASE: "+moon.forecast.forecastday[theDay].astro.moon_phase)
         // var pic_phase_full = ""
         if ( moon_lum === 0 ) {
             moon_lum=""
@@ -55,7 +59,8 @@ const Moon = ({theDay}) => {
             pic_phase="waxing"
         }
 
-        moonpic=moonpic+pic_phase+moon_lum+"Z.jpg"
+        moonpic=moonpic+pic_phase+moon_lum
+        console.log("MOONPIC: "+moonpic)
         // console.log("MOON PIC: "+moonpic+" - pic_phase: "+pic_phase+" - moon_lum: "+moon_lum+" - pic_phase_full: "+pic_phase_full)
 
     }

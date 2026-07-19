@@ -14,7 +14,8 @@ services:
   bgservice:
     build:
       context: .
-      dockerfile: Dockerfile-bg
+      # dockerfile: Dockerfile-bg
+      dockerfile: Dockerfile-bg-js
     image: steve353/sewagescraper:1.0
     volumes:
       - ./data:/app/data
