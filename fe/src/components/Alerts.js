@@ -5,7 +5,7 @@ import Southern from './Southern';
 import './Layout.css';
 
 const Alerts = () => {
-    const apiurl = process.env.REACT_APP_SEWAGE_URL + "/sewage.json";
+    const apiurl = process.env.REACT_APP_SEWAGE_URL
 
     const [alerts, setAlerts] = useState([]);
     const [statusCode, setStatusCode] = useState(null);
@@ -84,7 +84,7 @@ const Alerts = () => {
     // ------------------------------------------------------------
     // Determine state
     // ------------------------------------------------------------
-    const noData = statusCode === 200 && alerts.length === 0;
+    const noData = statusCode === 200 && alerts.message === "No spills";
     const hasData = statusCode === 200 && alerts.length > 0;
 
     // ------------------------------------------------------------
@@ -102,45 +102,7 @@ const Alerts = () => {
                         </div>
                     </div>
                 </div>
-
-                <div className='div-table'>
-                    <div className='div-table-row'>
-                        <div className='div-table-col-max white'>
-                            <h4>No Alerts</h4>
-                        </div>
-                    </div>
-                </div>
-                <div className='div-table white'>
-                    <div className='div-table-row white'>
-                        <div className='div-table-col-max white'>
-                            <h3>Check sewage status:</h3>
-                            <Southern />
-                            <br />
-                            <SAS />
-                            <br />
-                        </div>
-                    </div>
-                </div>
             </>
-        );
-    }
-
-    // ------------------------------------------------------------
-    // Render: API not responding
-    // ------------------------------------------------------------
-    if (hasData && alerts[0].activity === "API not responding") {
-        return (
-            <div className='div-table white'>
-                <div className='div-table-row white'>
-                    <div className='div-table-col-max white'>
-                        <h3>Check sewage status:</h3>
-                        <Southern />
-                        <br />
-                        <SAS />
-                        <br />
-                    </div>
-                </div>
-            </div>
         );
     }
 
@@ -209,17 +171,6 @@ const Alerts = () => {
                             </div>
                         );
                     })}
-                </div>
-                <div className='div-table white'>
-                    <div className='div-table-row white'>
-                        <div className='div-table-col-max white'>
-                            <h3>Check sewage status:</h3>
-                            <Southern />
-                            <br />
-                            <SAS />
-                            <br />
-                        </div>
-                    </div>
                 </div>
             </>
         );

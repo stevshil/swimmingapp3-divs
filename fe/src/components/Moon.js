@@ -39,7 +39,7 @@ const Moon = ({theDay}) => {
         var moon_lum=Math.round(moon_illum*.12)
         moon_lum=moon_lum+"Z.jpg"
         var pic_phase = moon.forecast.forecastday[theDay].astro.moon_phase.substring(0,7).toLowerCase();
-        console.log("PHASE: "+pic_phase)
+        console.log(`PHASE: *${pic_phase}*`)
         console.log("LUM: "+moon_lum)
         console.log("ASTROPHASE: "+moon.forecast.forecastday[theDay].astro.moon_phase)
         // var pic_phase_full = ""
@@ -57,8 +57,13 @@ const Moon = ({theDay}) => {
             pic_phase="waning"
         } else if (pic_phase.includes("first q")) {
             pic_phase="waxing"
+            console.log("HERE")
+        } else {
+            pic_phase = pic_phase.replace(/\s+/g, '');
         }
 
+        console.log(`PIC_PHASE: *${pic_phase}*`)
+        console.log(`MOONLUM *${moon_lum}*`)
         moonpic=moonpic+pic_phase+moon_lum
         console.log("MOONPIC: "+moonpic)
         // console.log("MOON PIC: "+moonpic+" - pic_phase: "+pic_phase+" - moon_lum: "+moon_lum+" - pic_phase_full: "+pic_phase_full)

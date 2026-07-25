@@ -13,6 +13,7 @@ import './components/Tables.css';
 import plus from './images/plus3.png';
 import minus from './images/minus.png';
 import now from './images/Now2.webp';
+import Sites from './components/Sites';
 
 // App currently only deals with 3 day
 
@@ -92,6 +93,7 @@ function App() {
             <Weather theHour={hour} theDay={theDay} />
             <Tide theDay={theDay} />
             <Alerts />
+            <Sites />
             <Moon theDay={theDay} />
             <Sun theDay={theDay} />
           </div>

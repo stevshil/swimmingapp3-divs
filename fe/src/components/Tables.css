@@ -9,11 +9,16 @@ div, span, td {
 
 .div-table {
     display: table;         
-    width: auto;         
+    width: 100%;         
     background-color: #033687;         
     border: 1px solid #033687;         
     border-spacing: 5px; /* cellspacing:poor IE support for  this */
 }
+.div-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
 .div-table-row {
     display: table-row;
     width: auto;
