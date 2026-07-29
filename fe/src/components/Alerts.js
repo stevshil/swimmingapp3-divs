@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
-import SAS from './SAS';
-import Southern from './Southern';
 import './Layout.css';
 
 const Alerts = () => {

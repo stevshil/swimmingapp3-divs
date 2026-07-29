@@ -37,7 +37,6 @@ const Moon = ({theDay}) => {
 
         // Calculate moon phase picture
         var moon_lum=Math.round(moon_illum*.12)
-        moon_lum=moon_lum+"Z.jpg"
         var pic_phase = moon.forecast.forecastday[theDay].astro.moon_phase.substring(0,7).toLowerCase();
         console.log(`PHASE: *${pic_phase}*`)
         console.log("LUM: "+moon_lum)
@@ -61,6 +60,7 @@ const Moon = ({theDay}) => {
         } else {
             pic_phase = pic_phase.replace(/\s+/g, '');
         }
+        moon_lum=moon_lum+"Z.jpg"
 
         console.log(`PIC_PHASE: *${pic_phase}*`)
         console.log(`MOONLUM *${moon_lum}*`)
