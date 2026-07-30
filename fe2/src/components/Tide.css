@@ -1,0 +1,16 @@
+.FaSortAmountUp {
+    color: lightgreen;
+    font-weight: 1000;
+}
+
+.FaSortAmountDownAlt {
+    color: rgb(255, 113, 113);
+}
+
+.high {
+    vertical-align: middle;
+}
+
+.low {
+    vertical-align: middle;
+}

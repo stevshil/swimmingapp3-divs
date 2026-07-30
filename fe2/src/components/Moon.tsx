@@ -1,0 +1,125 @@
+import React, {useEffect, useState} from 'react';
+import moonrise from '../images/moonrise.svg';
+import moonset from '../images/moonset.svg';
+import './Layout.css';
+
+interface MoonProps {
+    theDay: number,
+    serverURL: string;
+}
+
+const Moon = ({theDay,serverURL}: MoonProps) => {
+    let found = 0;
+    console.log("theDay: "+theDay);
+
+    const apiurl = serverURL+"/weather";
+
+    const [moon, setMoon] = useState([]);
+    useEffect(() => {
+        async function getData() {
+            try {
+                let response = await fetch(apiurl);
+                let data = await response.json();
+                setMoon(data);
+            } catch {
+                
+            }
+        };
+
+        getData();
+    }, [apiurl]);
+
+    let moon_illum = "";
+    let moonpic=import.meta.env.BASE_URL+"/images/moon_phases/"
+
+    if (!moon.current || moon.forecast.forecastday.length === 0) {
+        console.log("Data not found")
+    } else {
+        // console.log("Data found")
+        console.log("MOON LENGTH: "+moon.forecast.forecastday.length)
+        moon_illum = moon.forecast.forecastday[theDay].astro.moon_illumination;
+        found = 1;
+
+        // Calculate moon phase picture
+        var moon_lum=Math.round(moon_illum*.12)
+        moon_lum=moon_lum+"Z.jpg"
+        var pic_phase = moon.forecast.forecastday[theDay].astro.moon_phase.substring(0,7).toLowerCase();
+        console.log(`PHASE: *${pic_phase}*`)
+        console.log(`LUM: ${moon_lum}`)
+        console.log(`ASTROPHASE: ${moon.forecast.forecastday[theDay].astro.moon_phase}`)
+        // var pic_phase_full = ""
+        if ( moon_lum === 0 ) {
+            moon_lum=""
+            pic_phase="new"
+        }
+        if (pic_phase.includes("full")) {
+            pic_phase="full"
+            moon_lum=""
+        } else if (pic_phase.includes("new")) {
+            pic_phase="new"
+            moon_lum=""
+        } else if (pic_phase.includes("last q")) {
+            pic_phase="waning"
+        } else if (pic_phase.includes("first q")) {
+            pic_phase="waxing"
+        }
+
+        pic_phase=pic_phase.trimRight()
+        moonpic=moonpic+pic_phase+moon_lum
+        console.log("MOONPIC: "+moonpic)
+        // console.log("MOON PIC: "+moonpic+" - pic_phase: "+pic_phase+" - moon_lum: "+moon_lum+" - pic_phase_full: "+pic_phase_full)
+
+    }
+
+    if ( found === 1 ) {
+        return (
+            <>
+                <div className='div-table moon'>
+                    <div className='div-table-row moon'>
+                    <img src={moonpic} alt={moonpic} width="60px" valign='middle' />
+                    </div>
+                    <div className='div-table-row moon'>
+                    <div className='div-table-col moon'>
+                        Phase:
+                    </div>
+                    <div className='div-table-col moon'>
+                        {moon.forecast.forecastday[theDay].astro.moon_phase}
+                    </div>
+                    </div>
+                    <div className='div-table-row moon'>
+                    <div className='div-table-col moon'>
+                        Percent:
+                    </div>
+                    <div className='div-table-col moon'>
+                        {moon_illum} %
+                    </div>
+                    </div>
+                    <div className='div-table-row moon'>
+                    <div className='div-table-col moon'>
+                        <img src={moonrise} width="60px" alt="Rise" />
+                    </div>
+                    <div className='div-table-col moon'>
+                        <img src={moonset} width="60px" alt="Set" />
+                    </div>
+                    </div>
+                    <div className='div-table-row moon'>
+                    <div className='div-table-col moon'>
+                        {moon.forecast.forecastday[theDay].astro.moonrise}
+                    </div>
+                    <div className='div-table-col moon'>
+                        {moon.forecast.forecastday[theDay].astro.moonset}
+                    </div>
+                    </div>
+                    <div className='div-table-row moon'>&nbsp;</div>
+                </div>
+            </>
+        );
+    }
+    if ( found === 0 ) {
+        return (
+            <h3>Waiting for moon data</h3>
+        )
+    }
+};
+
+export default Moon;
